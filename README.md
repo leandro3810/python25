@@ -12,7 +12,8 @@
         /// <param name="args">Os argumentos da linha de comando.</param>
         /// estático void Main(string[] args)
         {
-            Console . WriteLine ( " Olá , Mundo ! " ) ; ( vamos ver se isso funciona ) , argumentos de linha de comando .
+            Console . WriteLine ( " Olá , Mundo ! " ) ; ( vamos ver se isso funciona ) , argumentos de linha de comando . 
+            Console.writeLine ("trabalho de programação!")
         }
     }
 }
