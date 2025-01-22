@@ -1,5 +1,5 @@
-@@ -0,0 +1,17 @@
-﻿espaço de nomes  ConsoleApp1
+  @@ -0,0 +1,17 @@
+   ﻿espaço de nomes  ConsoleApp1
 {
     /// <resumo>
     /// Representa o ponto de entrada do programa.
