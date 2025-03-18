@@ -1296,7 +1296,7 @@ class EnvironmentInfo:
             arch_subdir = self.pi.target_dir(x64=True)
         else:
             arch_subdir = self.pi.target_dir(hidex86=True)
-        paths = ['Lib%s' % arch_subdir, r'ATLMFC\Lib%s' % arch_subdir]
+        paths = [f'Lib{arch_subdir}', r'ATLMFC\Lib%s' % arch_subdir]
 
         if self.vs_ver >= 14.0:
             paths += [r'Lib\store%s' % arch_subdir]
