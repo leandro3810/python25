@@ -1,0 +1,4 @@
+[scripts_console]
+pip = pip._internal.cli.main:principal
+pip3 = pip._internal.cli.main:principal
+pip3.9 = pip._internal.cli.main:principal

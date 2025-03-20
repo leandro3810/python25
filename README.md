@@ -1,19 +1,9 @@
-  @@ -0,0 +1,17 @@
-   ﻿espaço de nomes  ConsoleApp1
-{
-    /// <resumo>
-    /// Representa o ponto de entrada do programa.
-    /// </resumo>
-    /// classe interna Programa
-    {
-        /// <resumo>
-        /// O ponto de entrada do programa.
-        /// </resumo>
-        /// <param name="args">Os argumentos da linha de comando.</param>
-        /// estático void Main(string[] args)
-        {
-            Console . WriteLine ( " Olá , Mundo ! " ) ; ( vamos ver se isso funciona ) , argumentos de linha de comando . 
-            Console.writeLine ("trabalho de programação!")
-        }
-    }
-}
+
+👋 Olá, sou @leandro3810
+👀 Tenho interesse em aprender mais sobre programação
+🌱 Atualmente estou aprendendo...
+💞️ Estou procurando colaborar em ...
+📫 Como entrar em contato comigo...
+😄 Pronomes: Ele/Dele...
+⚡ Curiosidade: ...
+ 

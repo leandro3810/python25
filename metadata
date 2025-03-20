@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: pip
+Version: 24.3.1
+Summary: The PyPA recommended tool for installing Python packages.
+Author-email: The pip developers <distutils-sig@python.org>
+License: MIT
+Project-URL: Homepage, https://pip.pypa.io/
+Classifier: "Development Status :: 5 - Production/Stable"
+License-File: LICENSE.txt
