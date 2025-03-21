@@ -90,7 +90,7 @@ class Bazaar(VersionControl):
             stdout_only=True,
             cwd=location,
         )
-        return revision.splitlines()[-1]
+        return revision.splitlines()[-1].strip()
 
     @classmethod
     def is_commit_id_equal(cls, dest: str, name: Optional[str]) -> bool:
