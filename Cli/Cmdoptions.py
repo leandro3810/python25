@@ -116,12 +116,12 @@ def check_dist_restriction(options: Values, check_target: bool = False) -> None:
             ":none:)."
         )
 
-    if check_target:
-        if dist_restriction_set and not options.target_dir:
-            raise CommandError(
-                "Can not use any platform or abi specific options unless "
-                "installing via '--target'"
-            )
+    if check_target and (dist_restriction_set and not options.target_dir):
+        raise CommandError(
+            "Can not use any platform or abi specific options unless "
+            "installing via '--target'"
+        )
+
 
 
 def _path_option_check(option: Option, opt: str, value: str) -> str:
