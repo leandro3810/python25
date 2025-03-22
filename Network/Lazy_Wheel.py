@@ -52,8 +52,8 @@ class LazyZipOverHTTP:
         head = session.head(url, headers=HEADERS)
         raise_for_status(head)
         if head.status_code != 200:
-            raise Exception(f"Expected status code 200 but got {head.status_code} for URL: {url}")
-        self._session, self._url, self._chunk_size = session, url, chunk_size
+            raise Exception(f"Expected status code 200 but got {head.status_code} for URL: {url}") 
+        self._session, self._url, self._chunk_size = session, url, chunk_size   
         self._length = int(head.headers["Content-Length"])
         self._file = NamedTemporaryFile()
         self.truncate(self._length)
