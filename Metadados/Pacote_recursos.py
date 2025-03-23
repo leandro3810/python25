@@ -230,9 +230,7 @@ class Environment(BaseEnvironment):
         return None
 
     def get_distribution(self, name: str) -> Optional[BaseDistribution]:
-        # Search the distribution by looking through the working set.
-        dist = self._search_distribution(name)
-        if dist:
+        if dist := self._search_distribution(name):
             return dist
 
         # If distribution could not be found, call working_set.require to
