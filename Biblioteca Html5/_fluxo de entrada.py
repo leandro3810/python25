@@ -88,7 +88,7 @@ class BufferedStream(object):
             return self._readFromBuffer(bytes)
 
     def _bufferedBytes(self):
-        return sum([len(item) for item in self.buffer])
+        return sum(len(item) for item in self.buffer)
 
     def _readStream(self, bytes):
         data = self.stream.read(bytes)
