@@ -53,7 +53,7 @@ class WheelMetadata:
             # Augment the default error with the origin of the file.
             raise UnsupportedWheel(
                 f"Error decoding metadata for {self._wheel_name}: {e} in {name} file"
-            )
+            ) from e
 
     def get_metadata_lines(self, name: str) -> Iterable[str]:
         return pkg_resources.yield_lines(self.get_metadata(name))
