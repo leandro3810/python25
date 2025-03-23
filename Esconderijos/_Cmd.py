@@ -38,7 +38,8 @@ def get_args():
 
 
 def main(args=None):
-    args = get_args()
+    if args is None:
+        args = get_args()
     sess = get_session()
 
     # Make a request to get a response
