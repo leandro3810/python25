@@ -1287,7 +1287,7 @@ class HTMLTokenizer(object):
             # XXX
             self.tokenQueue.append({"type": tokenTypes["ParseError"], "data":
                                     "unexpected-char-in-comment"})
-            self.currentToken["data"] += "--" + data
+            self.currentToken["data"] += f"--{data}"
             self.state = self.commentState
         return True
 
