@@ -234,9 +234,9 @@ class HTMLUnicodeInputStream(object):
             EOF when EOF is reached.
         """
         # Read a new chunk from the input stream if necessary
-        if self.chunkOffset >= self.chunkSize:
-            if not self.readChunk():
-                return EOF
+        if self.chunkOffset >= self.chunkSize and not self.readChunk():
+            return EOF
+
 
         chunkOffset = self.chunkOffset
         char = self.chunk[chunkOffset]
