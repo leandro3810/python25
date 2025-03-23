@@ -224,10 +224,14 @@ class Environment(BaseEnvironment):
         match the behavior of ``pkg_resources.get_distribution()``.
         """
         canonical_name = canonicalize_name(name)
-        for dist in self.iter_distributions():
-            if dist.canonical_name == canonical_name:
-                return dist
-        return None
+        return next(
+            (
+                dist
+                for dist in self.iter_distributions()
+                if dist.canonical_name == canonical_name
+            ),
+            None,
+        )
 
     def get_distribution(self, name: str) -> Optional[BaseDistribution]:
         if dist := self._search_distribution(name):
