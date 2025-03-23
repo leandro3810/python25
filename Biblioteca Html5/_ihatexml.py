@@ -269,11 +269,11 @@ class InfosetFilter(object):
         return nameFirstOutput + nameRestOutput
 
     def getReplacementCharacter(self, char):
-        if char in self.replaceCache:
-            replacement = self.replaceCache[char]
-        else:
-            replacement = self.escapeChar(char)
-        return replacement
+        return (
+            self.replaceCache[char]
+            if char in self.replaceCache
+            else self.escapeChar(char)
+        )
 
     def fromXmlName(self, name):
         for item in set(self.replacementRegexp.findall(name)):
