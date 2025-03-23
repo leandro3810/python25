@@ -181,7 +181,7 @@ class BaseDistribution(Protocol):
         treat this specially on uninstallation.
         """
         info_location = self.info_location
-        return False if not info_location else pathlib.Path(info_location).is_file()
+        return pathlib.Path(info_location).is_file() if info_location else False
 
     @property
     def installed_as_egg(self) -> bool:
