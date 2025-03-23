@@ -864,7 +864,7 @@ class ContentAttrParser(object):
             self.data.jumpTo(b"charset")
             self.data.position += 1
             self.data.skip()
-            if not self.data.currentByte == b"=":
+            if self.data.currentByte != b"=":
                 # If there is no = sign keep looking for attrs
                 return None
             self.data.position += 1
