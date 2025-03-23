@@ -117,8 +117,7 @@ def charStringToList(chars):
             assert len(item) == 1
 
             rv.append([ord(item)] * 2)
-    rv = normaliseCharList(rv)
-    return rv
+    return normaliseCharList(rv)
 
 
 def normaliseCharList(charList):
