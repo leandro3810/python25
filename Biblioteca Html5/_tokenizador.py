@@ -604,8 +604,12 @@ class HTMLTokenizer(object):
         elif data in asciiLetters:
             self.temporaryBuffer += data
         else:
-            self.tokenQueue.append({"type": tokenTypes["Characters"],
-                                    "data": "</" + self.temporaryBuffer})
+            self.tokenQueue.append(
+                {
+                    "type": tokenTypes["Characters"],
+                    "data": f"</{self.temporaryBuffer}",
+                }
+            )
             self.stream.unget(data)
             self.state = self.scriptDataState
         return True
