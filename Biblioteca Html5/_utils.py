@@ -84,10 +84,7 @@ class BoundMethodDispatcher(Mapping):
         return self.dispatcher[key].__get__(self.instance)
 
     def get(self, key, default):
-        if key in self.dispatcher:
-            return self[key]
-        else:
-            return default
+        return self[key] if key in self.dispatcher else default
 
     def __iter__(self):
         return iter(self.dispatcher)
