@@ -35,7 +35,7 @@ class DictCache(BaseCache):
 
     def set(self, key, value, expires=None):
         with self.lock:
-            self.data.update({key: value})
+            self.data[key] = value
 
     def delete(self, key):
         with self.lock:
