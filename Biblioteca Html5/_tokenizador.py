@@ -176,10 +176,9 @@ class HTMLTokenizer(object):
             #
             # Consume characters and compare to these to a substring of the
             # entity names in the list until the substring no longer matches.
-            while (charStack[-1] is not EOF):
-                if not entitiesTrie.has_keys_with_prefix("".join(charStack)):
-                    break
+            while charStack[-1] is not EOF and not not entitiesTrie.has_keys_with_prefix("".join(charStack)):
                 charStack.append(self.stream.char())
+
 
             # At this point we have a string that starts with some characters
             # that may match an entity
