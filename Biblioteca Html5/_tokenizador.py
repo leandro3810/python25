@@ -1252,7 +1252,7 @@ class HTMLTokenizer(object):
             self.tokenQueue.append(self.currentToken)
             self.state = self.dataState
         else:
-            self.currentToken["data"] += "-" + data
+            self.currentToken["data"] += f"-{data}"
             self.state = self.commentState
         return True
 
