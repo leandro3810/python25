@@ -117,7 +117,7 @@ def moduleFactoryFactory(factory):
 
     def moduleFactory(baseModule, *args, **kwargs):
         if isinstance(ModuleType.__name__, type("")):
-            name = "_%s_factory" % baseModule.__name__
+            name = f"_{baseModule.__name__}_factory"
         else:
             name = b"_%s_factory" % baseModule.__name__
 
