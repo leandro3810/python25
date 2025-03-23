@@ -191,9 +191,7 @@ class BaseDistribution(Protocol):
         of) easy_install.
         """
         location = self.location
-        if not location:
-            return False
-        return location.endswith(".egg")
+        return False if not location else location.endswith(".egg")
 
     @property
     def installed_with_setuptools_egg_info(self) -> bool:
