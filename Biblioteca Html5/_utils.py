@@ -58,8 +58,7 @@ class MethodDispatcher(dict):
         _dictEntries = []
         for name, value in items:
             if isinstance(name, (list, tuple, frozenset, set)):
-                for item in name:
-                    _dictEntries.append((item, value))
+                _dictEntries.extend((item, value) for item in name)
             else:
                 _dictEntries.append((name, value))
         dict.__init__(self, _dictEntries)
