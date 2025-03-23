@@ -60,3 +60,14 @@ def main(args=None):
 
 if __name__ == "__main__":
     main()
+def main(args=None):
+    if args is None:
+        args = get_args()
+    setup_logging()
+    sess = get_session()
+
+    # Make a request to get a response
+    resp = sess.get(args.url)
+
+    # try setting the cache
+    sess.cache_controller.cache_response(resp.request, resp.raw)
