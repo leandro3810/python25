@@ -19,7 +19,7 @@ def get_default_environment() -> BaseEnvironment:
 
     This returns an Environment instance from the chosen backend. The default
     Environment instance should be built from ``sys.path`` and may use caching
-    to share instance state accorss calls.
+    to share instance state across calls.
     """
     from .pkg_resources import Environment
 
