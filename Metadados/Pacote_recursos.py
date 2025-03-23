@@ -112,7 +112,7 @@ class Distribution(BaseDistribution):
         except zipfile.BadZipFile as e:
             raise InvalidWheel(wheel.location, name) from e
         except UnsupportedWheel as e:
-            raise UnsupportedWheel(f"{name} has an invalid wheel, {e}")
+            raise UnsupportedWheel(f"{name} has an invalid wheel, {e}") from e
         dist = pkg_resources.DistInfoDistribution(
             location=wheel.location,
             metadata=WheelMetadata(metadata_text, wheel.location),
