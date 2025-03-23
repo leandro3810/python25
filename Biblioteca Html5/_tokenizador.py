@@ -18,10 +18,7 @@ from ._trie import Trie
 
 entitiesTrie = Trie(entities)
 
-if version_info >= (3, 7):
-    attributeMap = dict
-else:
-    attributeMap = OrderedDict
+attributeMap = dict if version_info >= (3, 7) else OrderedDict
 
 
 class HTMLTokenizer(object):
