@@ -1703,8 +1703,6 @@ class HTMLTokenizer(object):
             self.stream.unget(data)
             self.tokenQueue.append(self.currentToken)
             self.state = self.dataState
-        else:
-            pass
         return True
 
     def cdataSectionState(self):
