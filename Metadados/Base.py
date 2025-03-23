@@ -278,8 +278,7 @@ class BaseDistribution(Protocol):
         except (OSError, ValueError, NoneMetadataError):
             return ""  # Fail silently if the installer file cannot be read.
         for line in installer_text.splitlines():
-            cleaned_line = line.strip()
-            if cleaned_line:
+            if cleaned_line := line.strip():
                 return cleaned_line
         return ""
 
