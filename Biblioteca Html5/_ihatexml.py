@@ -241,7 +241,7 @@ class InfosetFilter(object):
 
     def coercePubid(self, data):
         dataOutput = data
-        for char in nonPubidCharRegexp.findall(data):
+        for char in nonPubidCharRegexp.findall(dataOutput):
             warnings.warn("Coercing non-XML pubid", DataLossWarning)
             replacement = self.getReplacementCharacter(char)
             dataOutput = dataOutput.replace(char, replacement)
