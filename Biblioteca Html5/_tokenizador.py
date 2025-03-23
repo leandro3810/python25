@@ -698,7 +698,7 @@ class HTMLTokenizer(object):
             self.temporaryBuffer = ""
             self.state = self.scriptDataEscapedEndTagOpenState
         elif data in asciiLetters:
-            self.tokenQueue.append({"type": tokenTypes["Characters"], "data": "<" + data})
+            self.tokenQueue.append({"type": tokenTypes["Characters"], "data": f"<{data}"})
             self.temporaryBuffer = data
             self.state = self.scriptDataDoubleEscapeStartState
         else:
