@@ -106,9 +106,7 @@ def isSurrogatePair(data):
 
 
 def surrogatePairToCodepoint(data):
-    char_val = (0x10000 + (ord(data[0]) - 0xD800) * 0x400 +
-                (ord(data[1]) - 0xDC00))
-    return char_val
+    return 0x10000 + (ord(data[0]) - 0xD800) * 0x400 + (ord(data[1]) - 0xDC00)
 
 # Module Factory Factory (no, this isn't Java, I know)
 # Here to stop this being duplicated all over the place.
