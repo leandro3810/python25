@@ -148,8 +148,7 @@ class BaseDistribution(Protocol):
 
         The returned location is normalized (in particular, with symlinks removed).
         """
-        egg_link = egg_link_path_from_location(self.raw_name)
-        if egg_link:
+        if egg_link := egg_link_path_from_location(self.raw_name):
             location = egg_link
         elif self.location:
             location = self.location
