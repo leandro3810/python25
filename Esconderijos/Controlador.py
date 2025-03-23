@@ -396,7 +396,17 @@ class CacheController(object):
         # the cached body invalid. But... just in case, we'll be sure
         # to strip out ones we know that might be problmatic due to
         # typical assumptions.
-        excluded_headers = ["content-length"]
+        excluded_headers = [
+            "content-length",
+            "transfer-encoding",
+            "connection",
+            "keep-alive",
+            "proxy-authenticate",
+            "proxy-authorization",
+            "te",
+            "trailer",
+            "upgrade"
+        ]
 
         cached_response.headers.update(
             dict(
