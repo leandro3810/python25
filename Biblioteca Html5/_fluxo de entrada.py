@@ -209,13 +209,7 @@ class HTMLUnicodeInputStream(object):
         source can be either a file object, local filename or a string.
 
         """
-        # Already a file object
-        if hasattr(source, 'read'):
-            stream = source
-        else:
-            stream = StringIO(source)
-
-        return stream
+        return source if hasattr(source, 'read') else StringIO(source)
 
     def _position(self, offset):
         chunk = self.chunk
