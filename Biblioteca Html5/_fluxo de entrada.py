@@ -623,10 +623,7 @@ class EncodingBytes(bytes):
     def getPosition(self):
         if self._position >= len(self):
             raise StopIteration
-        if self._position >= 0:
-            return self._position
-        else:
-            return None
+        return self._position if self._position >= 0 else None
 
     position = property(getPosition, setPosition)
 
