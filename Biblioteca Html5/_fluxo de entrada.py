@@ -65,9 +65,7 @@ class BufferedStream(object):
         self.position = [-1, 0]  # chunk number, offset
 
     def tell(self):
-        pos = 0
-        for chunk in self.buffer[:self.position[0]]:
-            pos += len(chunk)
+        pos = sum(len(chunk) for chunk in self.buffer[:self.position[0]])
         pos += self.position[1]
         return pos
 
