@@ -667,8 +667,8 @@ class EncodingBytes(bytes):
         a match is found advance the position to the last byte of the match"""
         try:
             self._position = self.index(bytes, self.position) + len(bytes) - 1
-        except ValueError:
-            raise StopIteration
+        except ValueError as e:
+            raise StopIteration from e
         return True
 
 
