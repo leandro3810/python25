@@ -541,9 +541,9 @@ class HTMLBinaryInputStream(HTMLUnicodeInputStream):
             # Need to detect UTF-32 before UTF-16
             encoding = bomDict.get(string)         # UTF-32
             seek = 4
-            if not encoding:
-                encoding = bomDict.get(string[:2])  # UTF-16
-                seek = 2
+        if not encoding:
+            encoding = bomDict.get(string[:2])  # UTF-16
+            seek = 2
 
         # Set the read position past the BOM if one was found, otherwise
         # set it to the start of the stream
