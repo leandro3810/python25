@@ -19,7 +19,7 @@ asciiLettersBytes = frozenset(item.encode("ascii") for item in asciiLetters)
 asciiUppercaseBytes = frozenset(item.encode("ascii") for item in asciiUppercase)
 spacesAngleBrackets = spaceCharactersBytes | frozenset([b">", b"<"])
 
-invalid_unicode_no_surrogate = "[\u0001-\u0008\u000B\u000E-\u001F\u007F-\u009F\uFDD0-\uFDEF\uFFFE\uFFFF\U0001FFFE\U0001FFFF\U0002FFFE\U0002FFFF\U0003FFFE\U0003FFFF\U0004FFFE\U0004FFFF\U0005FFFE\U0005FFFF"
+
 
 if _utils.supports_lone_surrogates:
     assert invalid_unicode_no_surrogate[-1] == "]" and invalid_unicode_no_surrogate.count("]") == 1
