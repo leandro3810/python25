@@ -432,11 +432,7 @@ class HTMLBinaryInputStream(HTMLUnicodeInputStream):
 
         """
         # Already a file object
-        if hasattr(source, 'read'):
-            stream = source
-        else:
-            stream = BytesIO(source)
-
+        stream = source if hasattr(source, 'read') else BytesIO(source)
         try:
             stream.seek(stream.tell())
         except Exception:
