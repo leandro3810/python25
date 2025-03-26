@@ -516,7 +516,9 @@ class HTMLBinaryInputStream(HTMLUnicodeInputStream):
             self.rawStream.seek(0)
             self.charEncoding = (newEncoding, "certain")
             self.reset()
-            raise _ReparseException("Encoding changed from %s to %s" % (self.charEncoding[0], newEncoding))
+            raise _ReparseException(
+                f"Encoding changed from {self.charEncoding[0]} to {newEncoding}"
+            )
 
     def detectBOM(self):
         """Attempts to detect at BOM at the start of the stream. If
