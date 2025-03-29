@@ -659,7 +659,7 @@ def getPhases(debug):
                 return token
 
     class BeforeHeadPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processEOF(self):
             self.startTagHead(impliedTagToken("head", "StartTag"))
