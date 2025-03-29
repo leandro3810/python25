@@ -1885,7 +1885,7 @@ def getPhases(debug):
 
     class InCaptionPhase(Phase):
         # http://www.whatwg.org/specs/web-apps/current-work/#in-caption
-        __slots__ = tuple()
+        __slots__ = ()
 
         def ignoreEndTagCaption(self):
             return not self.tree.elementInScope("caption", variant="table")
