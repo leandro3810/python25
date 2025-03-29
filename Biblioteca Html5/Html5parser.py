@@ -1143,9 +1143,9 @@ def getPhases(debug):
             self.parser.parseRCDataRawtext(token, "RAWTEXT")
 
         def startTagTable(self, token):
-            if self.parser.compatMode != "quirks":
-                if self.tree.elementInScope("p", variant="button"):
-                    self.processEndTag(impliedTagToken("p"))
+            if self.parser.compatMode != "quirks" and self.tree.elementInScope("p", variant="button"):
+                self.processEndTag(impliedTagToken("p"))
+
             self.tree.insertElement(token)
             self.parser.framesetOK = False
             self.parser.phase = self.parser.phases["inTable"]
