@@ -1659,7 +1659,7 @@ def getPhases(debug):
         endTagHandler.default = endTagOther
 
     class TextPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processCharacters(self, token):
             self.tree.insertText(token["data"])
