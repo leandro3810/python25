@@ -152,10 +152,6 @@ class HTMLParser(object):
                 self.tokenizer.state = self.tokenizer.rawtextState
             elif self.innerHTML == 'plaintext':
                 self.tokenizer.state = self.tokenizer.plaintextState
-            else:
-                # state already is data state
-                # self.tokenizer.state = self.tokenizer.dataState
-                pass
             self.phase = self.phases["beforeHtml"]
             self.phase.insertHtmlElement()
             self.resetInsertionMode()
