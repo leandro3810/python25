@@ -622,7 +622,7 @@ def getPhases(debug):
             return True
 
     class BeforeHtmlPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         # helper methods
         def insertHtmlElement(self):
