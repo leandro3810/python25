@@ -1955,7 +1955,7 @@ def getPhases(debug):
 
     class InColumnGroupPhase(Phase):
         # http://www.whatwg.org/specs/web-apps/current-work/#in-column
-        __slots__ = tuple()
+        __slots__ = ()
 
         def ignoreEndTagColgroup(self):
             return self.tree.openElements[-1].name == "html"
