@@ -496,7 +496,7 @@ def getPhases(debug):
             return func(token)
 
     class InitialPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processSpaceCharacters(self, token):
             pass
