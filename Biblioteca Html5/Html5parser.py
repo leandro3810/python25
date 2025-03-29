@@ -869,7 +869,7 @@ def getPhases(debug):
         endTagHandler.default = endTagOther
 
     class AfterHeadPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processEOF(self):
             self.anythingElse()
