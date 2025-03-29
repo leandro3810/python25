@@ -806,7 +806,7 @@ def getPhases(debug):
         endTagHandler.default = endTagOther
 
     class InHeadNoscriptPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processEOF(self):
             self.parser.parseError("eof-in-head-noscript")
