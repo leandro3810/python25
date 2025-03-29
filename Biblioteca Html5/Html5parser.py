@@ -1693,7 +1693,7 @@ def getPhases(debug):
 
     class InTablePhase(Phase):
         # http://www.whatwg.org/specs/web-apps/current-work/#in-table
-        __slots__ = tuple()
+        __slots__ = ()
 
         # helper methods
         def clearStackToTableContext(self):
