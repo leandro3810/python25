@@ -2019,7 +2019,7 @@ def getPhases(debug):
 
     class InTableBodyPhase(Phase):
         # http://www.whatwg.org/specs/web-apps/current-work/#in-table0
-        __slots__ = tuple()
+        __slots__ = ()
 
         # helper methods
         def clearStackToTableBodyContext(self):
