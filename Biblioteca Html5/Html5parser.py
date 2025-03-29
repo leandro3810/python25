@@ -152,10 +152,6 @@ class HTMLParser(object):
                 self.tokenizer.state = self.tokenizer.rawtextState
             elif self.innerHTML == 'plaintext':
                 self.tokenizer.state = self.tokenizer.plaintextState
-            else:
-                # state already is data state
-                # self.tokenizer.state = self.tokenizer.dataState
-                pass
             self.phase = self.phases["beforeHtml"]
             self.phase.insertHtmlElement()
             self.resetInsertionMode()
@@ -496,7 +492,7 @@ def getPhases(debug):
             return func(token)
 
     class InitialPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processSpaceCharacters(self, token):
             pass
@@ -663,7 +659,7 @@ def getPhases(debug):
                 return token
 
     class BeforeHeadPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processEOF(self):
             self.startTagHead(impliedTagToken("head", "StartTag"))
@@ -1663,7 +1659,7 @@ def getPhases(debug):
         endTagHandler.default = endTagOther
 
     class TextPhase(Phase):
-        __slots__ = tuple()
+        __slots__ = ()
 
         def processCharacters(self, token):
             self.tree.insertText(token["data"])
