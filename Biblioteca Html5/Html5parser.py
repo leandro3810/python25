@@ -2117,7 +2117,7 @@ def getPhases(debug):
 
     class InRowPhase(Phase):
         # http://www.whatwg.org/specs/web-apps/current-work/#in-row
-        __slots__ = tuple()
+        __slots__ = ()
 
         # helper methods (XXX unify this with other table helper methods)
         def clearStackToTableRowContext(self):
