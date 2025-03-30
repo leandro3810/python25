@@ -45,7 +45,8 @@ def unpack(src_dir, dst_dir):
                 del dirnames[n]
     # Cleanup.
     for dirpath, dirnames, filenames in os.walk(src_dir, topdown=True):
-        assert not filenames
+    if filenames:
+        raise Exception("Cleanup error: directory '{}' is not empty during unpack cleanup.".format(dirpath))
         os.rmdir(dirpath)
 
 
