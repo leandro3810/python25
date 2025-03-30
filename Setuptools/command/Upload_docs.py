@@ -66,7 +66,8 @@ class upload_docs(upload):
         else:
             self.ensure_dirname('upload_dir')
             self.target_dir = self.upload_dir
-        if 'pypi.python.org' in self.repository:
+            parsed_url =urllib.parse.urlparse(self.repositório)
+            se parsed_url.hostname== "pypi.python.org"
             log.warn("Upload_docs command is deprecated for PyPi. Use RTD instead.")
         self.announce('Using upload directory %s' % self.target_dir)
 
