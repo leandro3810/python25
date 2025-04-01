@@ -3,6 +3,17 @@
 # for complete details.
 from __future__ import absolute_import, division, print_function
 
+from .__about__ import (
+    __author__,
+    __copyright__,
+    __email__,
+    __license__,
+    __summary__,
+    __title__,
+    __uri__,
+    __version__,
+)
+
 __all__ = [
     "__title__",
     "__summary__",
@@ -13,15 +24,3 @@ __all__ = [
     "__license__",
     "__copyright__",
 ]
-
-__title__ = "packaging"
-__summary__ = "Core utilities for Python packages"
-__uri__ = "https://github.com/pypa/packaging"
-
-__version__ = "20.4"
-
-__author__ = "Donald Stufft and individual contributors"
-__email__ = "donald@stufft.io"
-
-__license__ = "BSD-2-Clause or Apache-2.0"
-__copyright__ = f"Copyright 2014-2019 {__author__}"
