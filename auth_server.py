@@ -33,5 +33,8 @@ def protected():
             return jsonify({"message": f"Bem-vindo, {TOKENS[token]}!"})
     return jsonify({"message": "Não autorizado"}), 401
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    debug_mode = os.getenv("FLASK_ENV", "production") == "development"
+    app.run(debug=debug_mode)
