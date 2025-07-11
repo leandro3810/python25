@@ -1,34 +1,111 @@
-/* style.css */
-body {
-  font-family: Arial, sans-serif;
+/* Reset básico */
+* {
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8f9fa;
+  color: #222;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
 header {
-  background: #333;
-  color: white;
-  padding: 1em 2em;
+  background: linear-gradient(90deg, #005bea 0%, #3ad29f 100%);
+  color: #fff;
+  padding: 2rem 0 1rem 0;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+nav {
+  margin-top: 1rem;
 }
 
 nav a {
-  color: white;
-  margin: 0 10px;
+  color: #fff;
   text-decoration: none;
+  margin: 0 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
 }
 
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s;
+  margin: 0 auto;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #3ad29f;
+}
+
+nav a:hover::after,
+nav a:focus::after {
+  width: 80%;
+  background: #3ad29f;
+}
+
+/* Seções */
 section {
-  padding: 2em;
-  background: white;
-  margin: 1em;
-  border-radius: 8px;
+  max-width: 600px;
+  margin: 2.5rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 2rem 2rem 1rem 2rem;
 }
 
+section h2 {
+  color: #005bea;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+section p {
+  font-size: 1.1rem;
+}
+
+/* Footer */
 footer {
-  text-align: center;
-  padding: 1em;
   background: #222;
-  color: white;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 700px) {
+  section {
+    padding: 1.2rem 0.8rem 0.8rem 0.8rem;
+    margin: 1rem 0.5rem;
+  }
+  header h1 {
+    font-size: 1.6rem;
+  }
+  nav a {
+    margin: 0 0.4rem;
+    font-size: 1rem;
+  }
 }
