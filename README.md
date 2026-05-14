@@ -3,3 +3,39 @@
 ![PORCHE](https://github.com/user-attachments/assets/474fd3aa-7bd0-49af-a7da-04201bff8edc)
 
 
+
+## Segurança aplicada no projeto
+
+- Cabeçalhos de segurança HTTP no `servidor.js`
+- Limite de requisições por IP para reduzir abuso
+- Limite de payload em JSON e formulário
+- Endpoint de saúde: `GET /health`
+- Montagem segura de e-mail no frontend sem `innerHTML`
+
+## Agente de manutenção com IA (n8n + Python)
+
+Foi adicionado:
+
+- Script Python: `/home/runner/work/python25/python25/automation/ai_maintenance_agent.py`
+- Workflow n8n: `/home/runner/work/python25/python25/n8n/workflows/python25-ai-agent.json`
+
+### Como usar no n8n
+
+1. Importe o arquivo JSON do workflow no n8n.
+2. Ajuste o node **Execute Command** para o caminho real do seu repositório.
+3. Configure variáveis de ambiente no n8n:
+   - `GH_OWNER`
+   - `GH_REPO`
+   - `GH_TOKEN` (opcional, mas recomendado para API GitHub)
+4. Ative o workflow.
+
+### Execução manual do agente
+
+```bash
+python3 /home/runner/work/python25/python25/automation/ai_maintenance_agent.py --json
+```
+
+O agente gera um relatório JSON com:
+- status local do repositório
+- riscos básicos detectados
+- recomendação de ação quando houver necessidade de atualização/manutenção
