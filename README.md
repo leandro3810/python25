@@ -40,3 +40,26 @@ O agente gera um relatório JSON com:
 - status local do repositório
 - riscos básicos detectados
 - recomendação de ação quando houver necessidade de atualização/manutenção
+
+## Ambiente de demonstração da estrutura do projeto
+
+Foi adicionado:
+
+- Script Python: `automation/demo_ambiente_projeto.py`
+
+### Como executar
+
+```bash
+python3 automation/demo_ambiente_projeto.py
+```
+
+### Saída em JSON
+
+```bash
+python3 automation/demo_ambiente_projeto.py --json
+```
+
+O ambiente de demonstração mostra:
+- estrutura principal do repositório
+- esquema de controle de dados
+- esquema de sistemas
