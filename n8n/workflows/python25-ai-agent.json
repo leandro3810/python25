@@ -1,0 +1,145 @@
+{
+  "name": "python25-ai-maintenance-agent",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyDay",
+              "hour": 8,
+              "minute": 0
+            }
+          ]
+        }
+      },
+      "id": "1",
+      "name": "Daily Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python3 /home/runner/work/python25/python25/automation/ai_maintenance_agent.py --json"
+      },
+      "id": "2",
+      "name": "Run AI Maintenance Agent",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ JSON.parse($json[\"stdout\"] || \"{}\").action_required }}",
+              "operation": "isTrue"
+            }
+          ]
+        }
+      },
+      "id": "3",
+      "name": "Action Required?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        840,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "url": "=https://api.github.com/repos/{{$env.GH_OWNER}}/{{$env.GH_REPO}}/issues",
+        "jsonParameters": true,
+        "options": {},
+        "headerParametersJson": "={\"Accept\":\"application/vnd.github+json\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
+        "bodyParametersJson": "={\"title\":\"[AI Agent] Ação de manutenção recomendada\",\"body\":\"Relatório:\\n```json\\n\" + ($json[\"stdout\"] || \"{}\") + \"\\n```\"}"
+      },
+      "id": "4",
+      "name": "Create GitHub Issue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1110,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "result",
+              "value": "Sem ação necessária no momento."
+            }
+          ]
+        }
+      },
+      "id": "5",
+      "name": "No Action Needed",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1110,
+        380
+      ]
+    }
+  ],
+  "connections": {
+    "Daily Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run AI Maintenance Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run AI Maintenance Agent": {
+      "main": [
+        [
+          {
+            "node": "Action Required?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Required?": {
+      "main": [
+        [
+          {
+            "node": "Create GitHub Issue",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Action Needed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "python25-ai-agent-v1"
+}

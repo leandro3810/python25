@@ -36,9 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Preenche dinamicamente o email de contato
+  // Preenche dinamicamente o email de contato sem usar HTML direto
   const contatoSection = document.querySelector("#contato p:last-child");
   if (contatoSection) {
-    contatoSection.innerHTML = 'Email: <a href="mailto:leandro3810@email.com">leandro3810@email.com</a>';
+    contatoSection.textContent = "Email: ";
+    const emailLink = document.createElement("a");
+    emailLink.href = "mailto:leandro3810@email.com";
+    emailLink.textContent = "leandro3810@email.com";
+    contatoSection.appendChild(emailLink);
   }
 });
