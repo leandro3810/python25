@@ -28,7 +28,7 @@ IGNORE_NAMES = {
 }
 
 
-def list_tree(base: Path, max_depth: int = 2, max_items_per_dir: int = 30) -> dict[str, Any]:
+def build_tree_structure(base: Path, max_depth: int = 2, max_items_per_dir: int = 30) -> dict[str, Any]:
     def walk(path: Path, depth: int) -> dict[str, Any]:
         node: dict[str, Any] = {"name": path.name, "type": "dir", "children": []}
         if depth >= max_depth:
@@ -39,7 +39,10 @@ def list_tree(base: Path, max_depth: int = 2, max_items_per_dir: int = 30) -> di
         except OSError:
             return node
 
-        visible_entries = [e for e in entries if e.name not in IGNORE_NAMES][:max_items_per_dir]
+        all_visible_entries = [e for e in entries if e.name not in IGNORE_NAMES]
+        visible_entries = all_visible_entries[:max_items_per_dir]
+        if len(all_visible_entries) > max_items_per_dir:
+            node["truncated"] = True
         for entry in visible_entries:
             if entry.is_dir():
                 node["children"].append(walk(entry, depth + 1))
@@ -60,7 +63,7 @@ def build_demo() -> dict[str, Any]:
             "sistema": platform.platform(),
             "raiz_projeto": str(PROJECT_ROOT),
         },
-        "estrutura": list_tree(PROJECT_ROOT),
+        "estrutura": build_tree_structure(PROJECT_ROOT),
         "esquema_controle_dados": {
             "descricao": "Módulos responsáveis por metadados, cache, rede e modelos.",
             "componentes": [
