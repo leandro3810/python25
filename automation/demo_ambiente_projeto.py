@@ -65,15 +65,15 @@ def build_demo() -> dict[str, Any]:
             "descricao": "Módulos responsáveis por metadados, cache, rede e modelos.",
             "componentes": [
                 {"nome": "Metadados", "caminho": "Metadados/", "papel": "Base e recursos de metadados."},
-                {"nome": "Esconderijos", "caminho": "Esconderijos/", "papel": "Controle de cache, wrappers e adaptação de armazenamento."},
+                {"nome": "Cache (Esconderijos)", "caminho": "Esconderijos/", "papel": "Controle de cache, wrappers e adaptação de armazenamento."},
                 {"nome": "Network", "caminho": "Network/", "papel": "Sessão, download, autenticação e utilitários de rede."},
-                {"nome": "modelo", "caminho": "modelo/", "papel": "Representações de dados e regras de seleção/escopo."},
+                {"nome": "Modelo", "caminho": "modelo/", "papel": "Representações de dados e regras de seleção/escopo."},
             ],
         },
         "esquema_sistemas": {
             "descricao": "Camadas de execução, automação, interface e segurança do projeto.",
             "componentes": [
-                {"nome": "CLI", "caminho": "Cli/", "papel": "Entrada e comandos para execução em terminal."},
+                {"nome": "Cli", "caminho": "Cli/", "papel": "Entrada e comandos para execução em terminal."},
                 {"nome": "Automação", "caminho": "automation/", "papel": "Agentes e rotinas automatizadas de manutenção."},
                 {"nome": "Integração", "caminho": "n8n/workflows/", "papel": "Fluxos de integração para execução externa."},
                 {"nome": "Segurança", "caminho": "segurança/ e .github/workflows/", "papel": "Consultas e pipeline de análise de segurança."},
