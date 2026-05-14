@@ -77,7 +77,8 @@ def github_request(path: str, token: str | None) -> dict[str, Any] | list[Any] |
         with urllib.request.urlopen(req, timeout=20) as response:
             data = response.read().decode("utf-8")
             return json.loads(data)
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError):
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as exc:
+        print(f"[ai-maintenance-agent] Falha ao consultar GitHub API em {path}: {type(exc).__name__}", file=sys.stderr)
         return None
 
 

@@ -57,11 +57,12 @@
     },
     {
       "parameters": {
-        "authentication": "none",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
         "url": "=https://api.github.com/repos/{{$env.GH_OWNER}}/{{$env.GH_REPO}}/issues",
         "jsonParameters": true,
         "options": {},
-        "headerParametersJson": "={\"Accept\":\"application/vnd.github+json\",\"Authorization\":\"Bearer \" + $env.GH_TOKEN,\"X-GitHub-Api-Version\":\"2022-11-28\"}",
+        "headerParametersJson": "={\"Accept\":\"application/vnd.github+json\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
         "bodyParametersJson": "={\"title\":\"[AI Agent] Ação de manutenção recomendada\",\"body\":\"Relatório:\\n```json\\n\" + ($json[\"stdout\"] || \"{}\") + \"\\n```\"}"
       },
       "id": "4",

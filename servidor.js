@@ -10,9 +10,8 @@ const PORT = process.env.PORT || 3000;
 const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX || 120);
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 60_000);
 const clients = new Map();
-const cspNonce = crypto.randomBytes(16).toString("base64");
-
 function securityHeaders(req, res, next) {
+  const cspNonce = crypto.randomBytes(16).toString("base64");
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -44,14 +43,22 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: false, limit: "10kb" }));
 app.use(securityHeaders);
 app.use(rateLimit);
-app.use(express.static(path.join(__dirname, "."), { index: false, dotfiles: "deny" }));
+app.use(express.static(path.join(__dirname, "."), { index: "index.html", dotfiles: "deny" }));
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [clientIp, hits] of clients.entries()) {
+    const validHits = hits.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+    if (validHits.length === 0) {
+      clients.delete(clientIp);
+    } else {
+      clients.set(clientIp, validHits);
+    }
+  }
+}, RATE_LIMIT_WINDOW_MS).unref();
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
-});
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.use((err, _req, res, _next) => {
