@@ -28,7 +28,7 @@ IGNORE_NAMES = {
 }
 
 
-def build_tree_structure(base: Path, max_depth: int = 2, max_items_per_dir: int = 30) -> dict[str, Any]:
+def build_tree_structure(base: Path, max_depth: int = 2, max_entries_per_level: int = 30) -> dict[str, Any]:
     def walk(path: Path, depth: int) -> dict[str, Any]:
         node: dict[str, Any] = {"name": path.name, "type": "dir", "children": []}
         if depth >= max_depth:
@@ -40,8 +40,8 @@ def build_tree_structure(base: Path, max_depth: int = 2, max_items_per_dir: int 
             return node
 
         all_visible_entries = [e for e in entries if e.name not in IGNORE_NAMES]
-        visible_entries = all_visible_entries[:max_items_per_dir]
-        if len(all_visible_entries) > max_items_per_dir:
+        visible_entries = all_visible_entries[:max_entries_per_level]
+        if len(all_visible_entries) > max_entries_per_level:
             node["truncated"] = True
         for entry in visible_entries:
             if entry.is_dir():
@@ -95,7 +95,8 @@ def print_text(data: dict[str, Any]) -> None:
     print("Estrutura principal:")
 
     def render_tree(node: dict[str, Any], prefix: str = "") -> None:
-        print(f"{prefix}- {node['name']}")
+        suffix = " [truncado]" if node.get("truncated") else ""
+        print(f"{prefix}- {node['name']}{suffix}")
         for child in node.get("children", []):
             render_tree(child, prefix + "  ")
 
