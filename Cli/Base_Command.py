@@ -1,4 +1,4 @@
-""Base Command class, and related routines"""
+"""Base Command class, and related routines"""
  
  import functools
  import logging
