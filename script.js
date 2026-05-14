@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Exemplo de preenchimento dinâmico do email
+  // Preenche dinamicamente o email de contato
   const contatoSection = document.querySelector("#contato p:last-child");
   if (contatoSection) {
     contatoSection.innerHTML = 'Email: <a href="mailto:leandro3810@email.com">leandro3810@email.com</a>';
