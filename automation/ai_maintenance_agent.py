@@ -25,6 +25,18 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 @dataclass
 class MaintenanceReport:
+    """Resumo da saúde de manutenção do projeto.
+
+    generated_at: timestamp UTC da geração.
+    branch: branch local atual.
+    pending_changes: indica alterações locais não commitadas.
+    default_branch_sha: SHA do último commit da branch padrão remota (quando disponível).
+    open_security_alerts: quantidade de alertas de segurança abertos no GitHub (quando disponível).
+    risks: lista de riscos detectados.
+    recommended_actions: lista de ações recomendadas.
+    action_required: indica se é necessário atuar agora.
+    """
+
     generated_at: str
     branch: str
     pending_changes: bool
@@ -78,7 +90,10 @@ def github_request(path: str, token: str | None) -> dict[str, Any] | list[Any] |
             data = response.read().decode("utf-8")
             return json.loads(data)
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as exc:
-        print(f"[ai-maintenance-agent] Falha ao consultar GitHub API em {path}: {type(exc).__name__}", file=sys.stderr)
+        print(
+            f"[ai-maintenance-agent] Falha ao consultar GitHub API em {path}: {type(exc).__name__} - {exc}",
+            file=sys.stderr,
+        )
         return None
 
 

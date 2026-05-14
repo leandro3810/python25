@@ -16,8 +16,8 @@
 
 Foi adicionado:
 
-- Script Python: `/home/runner/work/python25/python25/automation/ai_maintenance_agent.py`
-- Workflow n8n: `/home/runner/work/python25/python25/n8n/workflows/python25-ai-agent.json`
+- Script Python: `automation/ai_maintenance_agent.py`
+- Workflow n8n: `n8n/workflows/python25-ai-agent.json`
 
 ### Como usar no n8n
 
@@ -32,7 +32,7 @@ Foi adicionado:
 ### Execução manual do agente
 
 ```bash
-python3 /home/runner/work/python25/python25/automation/ai_maintenance_agent.py --json
+python3 automation/ai_maintenance_agent.py --json
 ```
 
 O agente gera um relatório JSON com:

@@ -3,15 +3,12 @@
 
 const express = require("express");
 const path = require("path");
-const crypto = require("crypto");
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX || 120);
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 60_000);
 const clients = new Map();
 function securityHeaders(req, res, next) {
-  const cspNonce = crypto.randomBytes(16).toString("base64");
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -19,7 +16,7 @@ function securityHeaders(req, res, next) {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
   res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
   res.setHeader("X-Permitted-Cross-Domain-Policies", "none");
-  res.setHeader("Content-Security-Policy", `default-src 'self'; script-src 'self' 'nonce-${cspNonce}'; style-src 'self'; img-src 'self' data: https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests`);
+  res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests");
   next();
 }
 
@@ -38,6 +35,7 @@ function rateLimit(req, res, next) {
   next();
 }
 
+app.set("trust proxy", process.env.TRUST_PROXY === "true");
 app.disable("x-powered-by");
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: false, limit: "10kb" }));
@@ -61,8 +59,13 @@ app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-app.use((err, _req, res, _next) => {
-  console.error("Erro no servidor:", err && err.message ? err.message : err);
+app.use((err, req, res, _next) => {
+  console.error("Erro no servidor:", {
+    message: err && err.message ? err.message : String(err),
+    path: req.path,
+    method: req.method,
+    stack: err && err.stack ? err.stack : undefined,
+  });
   res.status(500).json({ error: "Erro interno no servidor." });
 });
 
