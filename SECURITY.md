@@ -14,9 +14,11 @@
    - `PORT`
    - `RATE_LIMIT_MAX`
    - `RATE_LIMIT_WINDOW_MS`
+   - `TRUST_PROXY` (`true` quando rodar atrás de proxy reverso)
 2. Nunca commite tokens no repositório.
 3. Execute CodeQL e revisão de dependências regularmente.
 4. Use o workflow do n8n para monitoramento contínuo e abertura automática de issues.
+5. O rate limit atual usa memória local do processo (adequado para uso simples); em produção distribuída, prefira backend compartilhado (ex.: Redis).
 
 ## Reporte de vulnerabilidades
 

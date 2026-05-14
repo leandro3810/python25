@@ -27,6 +27,7 @@ Foi adicionado:
    - `GH_OWNER`
    - `GH_REPO`
    - `GH_TOKEN` (opcional, mas recomendado para API GitHub)
+   - `GH_CODE_SCANNING_ENABLED=true` (opcional, usar somente se o repositório tiver acesso ao endpoint de code scanning)
 4. Ative o workflow.
 
 ### Execução manual do agente

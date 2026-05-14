@@ -90,10 +90,7 @@ def github_request(path: str, token: str | None) -> dict[str, Any] | list[Any] |
             data = response.read().decode("utf-8")
             return json.loads(data)
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as exc:
-        print(
-            f"[ai-maintenance-agent] Falha ao consultar GitHub API em {path}: {type(exc).__name__} - {exc}",
-            file=sys.stderr,
-        )
+        print(f"[ai-maintenance-agent] Falha ao consultar GitHub API em {path}: {type(exc).__name__}", file=sys.stderr)
         return None
 
 
@@ -113,9 +110,11 @@ def collect_remote_signals() -> tuple[str | None, int | None]:
             commit = branch_info.get("commit", {})
             default_branch_sha = commit.get("sha")
 
-    alerts = github_request("/code-scanning/alerts?state=open", token)
-    if isinstance(alerts, list):
-        open_security_alerts = len(alerts)
+    collect_code_scanning = os.getenv("GH_CODE_SCANNING_ENABLED", "false").lower() == "true"
+    if collect_code_scanning:
+        alerts = github_request("/code-scanning/alerts?state=open", token)
+        if isinstance(alerts, list):
+            open_security_alerts = len(alerts)
 
     return default_branch_sha, open_security_alerts
 
